@@ -10,6 +10,10 @@ def information(data, name):
     :param data: list/dict
     :param name: str
     :return: None
+    >>> information({'a':{'b':1,'c':2}, 'd':5}, '')
+    a/b
+    a/c
+    d
     """
     if isinstance(data, dict):
         for key, value in data.items():
@@ -29,8 +33,10 @@ def unpacking(data, path: list):
     """
     find value by the key in dict
     :param data: list/dict
-    :param path: str
+    :param path: list
     :return: str
+    >>> unpacking({'a':{'b':1,'c':2}, 'd':5}, ['a', 'c'])
+    '2'
     """
     if path:
         if isinstance(data, dict):
