@@ -48,6 +48,8 @@ def unpacking(data, path: list):
                         if new_value:
                             return str(new_value)
                     else:
+                        if value == None:
+                            value = 'null'
                         return str(value)
         elif isinstance(data, list):
             for item in data:
@@ -79,12 +81,18 @@ if __name__ == '__main__':
 
     if user != 'quit':
         information(file1, '')
-        print('Введіть один із поданих ключів')
         while True:
+            print('Введіть один із поданих вище ключів')
             user = input('>>> ')
             if user != 'quit':
                 if user[0] == '':
                     user = user[1:]
-                value = str(unpacking(file1, user.split('/')))
+                value = unpacking(file1, user.split('/'))
+                if value is not None:
+                    print(f'{user}: {value}')
+                    break
+                else:
+                    print('Вказаний шлях не існує. Спробуйте ще раз')
+                    print('Якщо ви бажаєте вийти введіть "quit".')
             else:
                 break
